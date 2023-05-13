@@ -1,0 +1,11 @@
+{
+	"require" : {
+		"badcow/dns": "^4.2.1",
+		"transip/transip-api-php": "^6.37"
+	},
+	"config": {
+		"allow-plugins": {
+			"php-http/discovery": true
+		}
+	}
+}
