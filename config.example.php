@@ -9,5 +9,7 @@ $config = [
     // Make sure your ip is whitelisted
     'privateKey' => file_get_contents( 'key.txt' ),
     'domainName' => '', // The domain name you want to export
+    'tag' => [], // The tag you want to export
     'generateWhitelistOnlyTokens' => true,
+    'exportAuthorizations' => false, // Set to true if you want to export the authorizations
 ];

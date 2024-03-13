@@ -1,3 +1,5 @@
 vendor
 key.txt
 *.zone
+zonefiles/
+authcodes/
