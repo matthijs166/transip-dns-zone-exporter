@@ -3,3 +3,4 @@ key.txt
 *.zone
 zonefiles/
 authcodes/
+config.php
