@@ -1,4 +1,4 @@
-# TransIP DNS Zone Exporter
+# TransIP DNS Zone Exporter | Export Your TransIP DNS domain Zones Easily
 
 The **TransIP DNS Zone Exporter** is a PHP command-line tool for exporting DNS zone data from a TransIP domain. This tool was created to make it easier to transfer a zone to another DNS provider, such as Cloudflare. It can also be used to backup your DNS zone data.
 
@@ -34,11 +34,11 @@ php index.php
 
 After the command has completed, you should see a file with the name `[domain name].zone` in the zonefiles directory of the project. This file contains your DNS zone data in BIND format.
 
-## Export tagged domains
+## Export Efficiency with Tagged Domains
 
 Tagging domains in TransIP streamlines organization. Rather than manually typing each domain, simply configure the desired tags in config.php to export grouped domains efficiently. Saves time, ensures accuracy.
 
-## Export domain authorization codes
+## Simplified Export of Domain Authorization (transfer) Codes
 
 Enabling the exportAuthorizationCodes setting in the configuration file facilitates exporting authorization codes for each domain. These codes are essential for domain transfers. This streamlines the process by allowing bulk export of authorization codes. However, please note that this functionality is contingent upon the domain's TLD supporting authorization codes and the domain being transferable.
 
