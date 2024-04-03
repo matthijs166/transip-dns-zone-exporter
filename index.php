@@ -31,7 +31,7 @@ foreach($domains as $domain) {
     $domainName = $domain->getName() ;
     $dnsentries = $api->domainDns()->getByDomainName( $domainName );
 
-    if($config['exportAuthorizations']) {
+    if($config['exportAuthorizationCodes']) {
         try {
             $auth_code = $api->domainAuthCode()->getByDomainName($domainName);
 

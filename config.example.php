@@ -11,5 +11,5 @@ $config = [
     'domainName' => '', // The domain name you want to export
     'tags' => [], // Optional: Tags you want to export
     'generateWhitelistOnlyTokens' => true,
-    'exportAuthorizations' => false, // Set to true if you want to export the authorizations
+    'exportAuthorizationCodes' => false, // Export codes to be used for domain transfer etc.
 ];
