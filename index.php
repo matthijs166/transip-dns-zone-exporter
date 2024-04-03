@@ -84,6 +84,9 @@ foreach($domains as $domain) {
                 list($priority, $weight, $port, $target) = explode(' ', $dnsEntry->getContent());
                 $rr->setRdata(Factory::SRV($priority, $weight, $port, $target));
                 break;
+            case DnsEntry::TYPE_NS:
+                $rr->setRdata(Factory::Ns($dnsEntry->getContent()));
+                break;
             //TODO: Implement the rest of the types
             default:
                 throw new \RuntimeException( $dnsEntry->getType() . ' records are not implemented');
