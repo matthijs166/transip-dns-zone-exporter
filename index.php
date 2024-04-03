@@ -26,7 +26,6 @@ if(!empty($config['tags'])){
 
 foreach($domains as $domain) {
     echo 'Processing ' . $domain->getName() . PHP_EOL;
-    flush();
 
     $domainName = $domain->getName() ;
     $dnsentries = $api->domainDns()->getByDomainName( $domainName );
