@@ -38,6 +38,10 @@ After the command has completed, you should see a file with the name `[domain na
 
 Tagging domains in TransIP streamlines organization. Rather than manually typing each domain, simply configure the desired tags in config.php to export grouped domains efficiently. Saves time, ensures accuracy.
 
+## Export domain authorization codes
+
+Enabling the exportAuthorizationCodes setting in the configuration file facilitates exporting authorization codes for each domain. These codes are essential for domain transfers. This streamlines the process by allowing bulk export of authorization codes. However, please note that this functionality is contingent upon the domain's TLD supporting authorization codes and the domain being transferable.
+
 ## Conclusion
 
 Using the **TransIP DNS Zone Exporter** can save you a lot of time when transferring your DNS zone to another provider or backing up your data. I hope you find this tool useful!
