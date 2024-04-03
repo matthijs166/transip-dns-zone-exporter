@@ -42,6 +42,7 @@ foreach($domains as $domain) {
             file_put_contents('authcodes/' . $domainName . '.auth', $auth_code);
         } catch (Exception $e) {
             // Do nothing; Can happen if the domain is not transferable or has no auth code
+            echo 'No auth code found for ' . $domainName . PHP_EOL;
         }
     }
 
