@@ -34,6 +34,10 @@ php index.php
 
 After the command has completed, you should see a file with the name `[domain name].zone` in the zonefiles directory of the project. This file contains your DNS zone data in BIND format.
 
+## Export tagged domains
+
+Tagging domains in TransIP streamlines organization. Rather than manually typing each domain, simply configure the desired tags in config.php to export grouped domains efficiently. Saves time, ensures accuracy.
+
 ## Conclusion
 
 Using the **TransIP DNS Zone Exporter** can save you a lot of time when transferring your DNS zone to another provider or backing up your data. I hope you find this tool useful!
