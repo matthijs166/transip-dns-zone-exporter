@@ -18,7 +18,10 @@ composer install
 
 ## Configuration
 
-Before running the tool, you will need to set your TransIP username, domain, and API key in the `config.php` file. 
+Before running the tool, you will need to set your TransIP username, domain or tag, and API key in the `config.php` file.
+There is a example file called `config.example.php` in the root directory of the project. You can use this file as a starting point.
+
+```php
 
 
 ## Usage
@@ -29,7 +32,7 @@ To run the tool, use the following command in your terminal:
 php index.php
 ```
 
-After the command has completed, you should see a file with the name `[domain name].zone` in the root directory of the project. This file contains your DNS zone data in BIND format.
+After the command has completed, you should see a file with the name `[domain name].zone` in the zonefiles directory of the project. This file contains your DNS zone data in BIND format.
 
 ## Conclusion
 
