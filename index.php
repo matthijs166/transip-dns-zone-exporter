@@ -18,12 +18,21 @@ $api = new TransipAPI(
     $config['generateWhitelistOnlyTokens']
 );
 
+# Configure domains to export
+$domains = [];
 if(!empty($config['tags'])){
-    $domains = $api->domains()->getByTagNames($config['tags']);
-}else{
-    $domains = [new Transip\Api\Library\Entity\Domain(['name' => $config['domainName']])];
+    $domains = array_merge($domains, $api->domains()->getByTagNames($config['tags']));
+}
+foreach($config['domainNames'] as $domainName){
+    // Skip if domain is already in the list
+    if(in_array($domainName, array_map(function($domain){ return $domain->getName(); }, $domains))){
+        continue;
+    }
+
+    $domains[] = new Transip\Api\Library\Entity\Domain(['name' => $domainName]);
 }
 
+# Process each domain
 foreach($domains as $domain) {
     echo 'Processing ' . $domain->getName() . PHP_EOL;
 
