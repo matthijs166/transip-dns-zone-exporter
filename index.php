@@ -54,7 +54,6 @@ foreach($domains as $domain) {
         }
     }
 
-
     // Create a new zone for exporting
     $zone = new Zone($domainName . '.');
     $zone->setDefaultTtl(1);
