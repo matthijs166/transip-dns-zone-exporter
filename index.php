@@ -15,23 +15,30 @@ use Badcow\DNS\AlignedBuilder;
 $api = new TransipAPI(
     $config['login'],
     $config['privateKey'],
-    $config['generateWhitelistOnlyTokens']
 );
 
-if(!empty($config['tag'])){
-    $domains = $api->domains()->getByTagNames($config['tag']);
-}else{
-    $domains = [new Transip\Api\Library\Entity\Domain(['name' => $config['domainName']])];
+# Configure domains to export
+$domains = [];
+if(!empty($config['tags'])){
+    $domains = array_merge($domains, $api->domains()->getByTagNames($config['tags']));
+}
+foreach($config['domainNames'] as $domainName){
+    // Skip if domain is already in the list
+    if(in_array($domainName, array_map(function($domain){ return $domain->getName(); }, $domains))){
+        continue;
+    }
+
+    $domains[] = new Transip\Api\Library\Entity\Domain(['name' => $domainName]);
 }
 
+# Process each domain
 foreach($domains as $domain) {
     echo 'Processing ' . $domain->getName() . PHP_EOL;
-    flush();
 
     $domainName = $domain->getName() ;
     $dnsentries = $api->domainDns()->getByDomainName( $domainName );
 
-    if($config['exportAuthorizations']) {
+    if($config['exportAuthorizationCodes']) {
         try {
             $auth_code = $api->domainAuthCode()->getByDomainName($domainName);
 
@@ -42,9 +49,9 @@ foreach($domains as $domain) {
             file_put_contents('authcodes/' . $domainName . '.auth', $auth_code);
         } catch (Exception $e) {
             // Do nothing; Can happen if the domain is not transferable or has no auth code
+            echo 'No auth code found for ' . $domainName . PHP_EOL;
         }
     }
-
 
     // Create a new zone for exporting
     $zone = new Zone($domainName . '.');
@@ -76,6 +83,9 @@ foreach($domains as $domain) {
             case DnsEntry::TYPE_SRV:
                 list($priority, $weight, $port, $target) = explode(' ', $dnsEntry->getContent());
                 $rr->setRdata(Factory::SRV($priority, $weight, $port, $target));
+                break;
+            case DnsEntry::TYPE_NS:
+                $rr->setRdata(Factory::Ns($dnsEntry->getContent()));
                 break;
             //TODO: Implement the rest of the types
             default:

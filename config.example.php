@@ -8,8 +8,7 @@ $config = [
     // Save to key.txt
     // Make sure your ip is whitelisted
     'privateKey' => file_get_contents( 'key.txt' ),
-    'domainName' => '', // The domain name you want to export
-    'tag' => [], // The tag you want to export
-    'generateWhitelistOnlyTokens' => true,
-    'exportAuthorizations' => false, // Set to true if you want to export the authorizations
+    'domainNames' => [], // List of Domain names (string) you want to export
+    'tags' => [], // Optional: Tags you want to export
+    'exportAuthorizationCodes' => false, // Export codes to be used for domain transfer etc.
 ];
