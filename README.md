@@ -18,8 +18,8 @@ composer install
 
 ## Configuration
 
-Before running the tool, you will need to set your TransIP username, domain or tag, and API key in the `config.php` file.
-There is a example file called `config.example.php` in the root directory of the project. You can use this file as a starting point.
+Before running the tool, you will need to set your TransIP username, domains or tags set on the domains, and API key in the `config.php` file.
+There is a example file called `config.example.php` in the root directory of the project. You can use this file as your starting point.
 
 ```php
 
@@ -45,3 +45,5 @@ Enabling the exportAuthorizationCodes setting in the configuration file facilita
 ## Conclusion
 
 Using the **TransIP DNS Zone Exporter** can save you a lot of time when transferring your DNS zone to another provider or backing up your data. I hope you find this tool useful!
+
+Im open to PR's and suggestions to improve this tool.
