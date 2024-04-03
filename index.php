@@ -18,8 +18,8 @@ $api = new TransipAPI(
     $config['generateWhitelistOnlyTokens']
 );
 
-if(!empty($config['tag'])){
-    $domains = $api->domains()->getByTagNames($config['tag']);
+if(!empty($config['tags'])){
+    $domains = $api->domains()->getByTagNames($config['tags']);
 }else{
     $domains = [new Transip\Api\Library\Entity\Domain(['name' => $config['domainName']])];
 }
