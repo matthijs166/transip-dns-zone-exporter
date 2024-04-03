@@ -10,6 +10,5 @@ $config = [
     'privateKey' => file_get_contents( 'key.txt' ),
     'domainNames' => [], // List of Domain names (string) you want to export
     'tags' => [], // Optional: Tags you want to export
-    'generateWhitelistOnlyTokens' => true,
     'exportAuthorizationCodes' => false, // Export codes to be used for domain transfer etc.
 ];

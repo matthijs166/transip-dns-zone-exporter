@@ -15,7 +15,6 @@ use Badcow\DNS\AlignedBuilder;
 $api = new TransipAPI(
     $config['login'],
     $config['privateKey'],
-    $config['generateWhitelistOnlyTokens']
 );
 
 # Configure domains to export
