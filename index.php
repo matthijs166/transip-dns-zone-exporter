@@ -84,6 +84,14 @@ foreach($domains as $domain) {
                 list($priority, $weight, $port, $target) = explode(' ', $dnsEntry->getContent());
                 $rr->setRdata(Factory::SRV($priority, $weight, $port, $target));
                 break;
+            case DnsEntry::TYPE_SSHFP:
+                list($algorithm, $fingerprintType, $fingerprint) = explode(' ', $dnsEntry->getContent());
+                $rr->setRdata(Factory::SSHFP($algorithm, $fingerprintType, $fingerprint));
+                break;
+            case DnsEntry::TYPE_CAA:
+                list($flag, $tag, $value) = explode(' ', $dnsEntry->getContent());
+                $rr->setRdata(Factory::CAA($flag, $tag, $value));
+                break;
             case DnsEntry::TYPE_NS:
                 $rr->setRdata(Factory::Ns($dnsEntry->getContent()));
                 break;
