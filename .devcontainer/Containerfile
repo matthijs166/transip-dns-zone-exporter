@@ -1,0 +1,22 @@
+FROM php:8.3-cli-bookworm
+
+# Basic tooling commonly needed for Composer packages and git-based installs.
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        curl \
+        git \
+        libgmp-dev \
+        unzip \
+        zip \
+        libzip-dev \
+    && docker-php-ext-install gmp zip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Composer using the official installer with signature verification.
+RUN EXPECTED_CHECKSUM="$(curl -fsSL https://composer.github.io/installer.sig)" \
+    && php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');" \
+    && echo "$EXPECTED_CHECKSUM  composer-setup.php" | sha384sum -c - \
+    && php composer-setup.php --install-dir=/usr/local/bin --filename=composer \
+    && rm composer-setup.php
+
+WORKDIR /workspaces/transip-dns-zone-exporter

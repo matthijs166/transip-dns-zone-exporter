@@ -1,0 +1,19 @@
+{
+  "name": "transip-dns-zone-exporter",
+  "build": {
+    "dockerfile": "Containerfile",
+    "context": ".."
+  },
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "php.validate.executablePath": "/usr/local/bin/php"
+      },
+      "extensions": [
+        "xdebug.php-pack"
+      ]
+    }
+  },
+  "postCreateCommand": "composer install",
+  "remoteUser": "root"
+}
