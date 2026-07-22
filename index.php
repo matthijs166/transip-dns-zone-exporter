@@ -1,3 +1,5 @@
+#!/usr/bin/env php
+
 <?php
 require __DIR__ . '/vendor/autoload.php';
 require __DIR__ . '/config.php';
@@ -6,15 +8,31 @@ global $config;
 
 use Transip\Api\Library\TransipAPI;
 use Transip\Api\Library\Entity\Domain\DnsEntry as DnsEntry;
+use Transip\Api\Library\HttpClient\GuzzleClient;
+use GuzzleHttp\Client as GuzzleHttpClient;
 
 use Badcow\DNS\Zone;
 use Badcow\DNS\Rdata\Factory;
 use Badcow\DNS\ResourceRecord;
 use Badcow\DNS\AlignedBuilder;
 
+$generateWhitelistOnlyTokens = $config['generateWhitelistOnlyTokens'] ?? true;
+
+// Force IPv4 to avoid IPv6 being selected when TransIP API has an AAAA record,
+// which would fail if only an IPv4 address is whitelisted.
+$guzzleClient = new GuzzleHttpClient([
+    'curl' => [CURLOPT_IPRESOLVE => CURL_IPRESOLVE_V4],
+]);
+$httpClient = new GuzzleClient(TransipAPI::TRANSIP_API_ENDPOINT, $guzzleClient);
+
 $api = new TransipAPI(
     $config['login'],
     $config['privateKey'],
+    (bool)$generateWhitelistOnlyTokens,
+    '',
+    '',
+    null,
+    $httpClient,
 );
 
 # Configure domains to export
